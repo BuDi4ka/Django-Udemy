@@ -10,5 +10,5 @@ def posts(request):
     return HttpResponse("All posts")
 
 
-def post(request, post_id):
+def post_detail(request, post_id):
     return HttpResponse(f"Post {post_id}")
