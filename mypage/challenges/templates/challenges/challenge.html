@@ -9,7 +9,11 @@
         This {{ challenge_month|title }} challenge
     </h1>
     <h2>
+        {% if challenge_text %}
         {{ challenge_text }}
+        {% else %}
+            <p>There is no challenge for this month yet</p>
+        {% endif %}
     </h2>
 </body>
 </html>

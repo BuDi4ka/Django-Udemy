@@ -16,7 +16,7 @@ monthly_challenges = {
     'september': 'Learn Django!',
     'october': 'Eat more meat entire month!',
     'november': 'Walk at least 20 min a day!',
-    'december': 'Learn Django!'
+    'december': None
 }
 # Create your views here.
 def index(request):
