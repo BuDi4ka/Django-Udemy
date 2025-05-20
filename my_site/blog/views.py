@@ -7,7 +7,7 @@ def index(request):
 
 
 def posts(request):
-    return HttpResponse("All posts")
+    return render(request, 'blog/all-posts.html')
 
 
 def post_detail(request, post_id):
