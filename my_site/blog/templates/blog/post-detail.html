@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    This Post Title
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/post-detail.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+    <section id="summary">
+        <h2>Post Title</h2>
+        <article>
+            <img src="{% static 'blog/images/mountains.jpg' %}" alt="Post Title">
+            <address>By Dima</address>
+            <div>
+                Last updated:
+                <time>July 10th</time>
+            </div>
+        </article>
+    </section>
+
+    <main>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam labore laudantium quidem quisquam
+            sapiente?
+            A adipisci amet assumenda aut eveniet iste iure nemo numquam quo temporibus velit veniam, vero
+            voluptatibus?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, atque ducimus esse est exercitationem, fugit
+            illo minima minus natus, nihil pariatur quasi quidem quo quos suscipit tempora tempore temporibus
+            voluptates.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid assumenda est inventore nihil nobis.
+            Deleniti dolore dolores doloribus earum eligendi excepturi fugiat hic, iusto minima nulla ratione reiciendis
+            vero voluptatem!
+        </p>
+    </main>
+
+{% endblock %}
