@@ -14,12 +14,12 @@ def index(request):
                   )
 
 
-def detail(request, book_id):
+def detail(request, slug):
     # try:
     #     book = Book.objects.get(pk=book_id)
     # except:
     #     raise Http404
-    book = get_object_or_404(Book, pk=book_id)
+    book = get_object_or_404(Book, slug=slug)
     return render(
         request,
         'dat_model/book_detail.html',
