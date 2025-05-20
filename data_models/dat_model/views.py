@@ -10,7 +10,7 @@ def index(request):
     books = Book.objects.all()
     return render(request,
                   'dat_model/index.html',
-                  {'books': books}
+                  {'books': books},
                   )
 
 
