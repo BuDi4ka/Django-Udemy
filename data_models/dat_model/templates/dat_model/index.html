@@ -1,0 +1,13 @@
+{% extends 'dat_model/base.html' %}
+
+{% block title %}
+    All Books
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
