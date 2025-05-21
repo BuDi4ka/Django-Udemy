@@ -14,7 +14,7 @@ class Book(models.Model):
     )
     author = models.CharField(max_length=100)
     is_bestselling = models.BooleanField(null=False, default=False)
-    slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
+    slug = models.SlugField(default='', null=False, unique=True, editable=False, blank=True, db_index=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
