@@ -4,15 +4,22 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=6)
+    city = models.CharField(max_length=50)
+
+
 class Author(models.Model):
-   first_name = models.CharField(max_length=100)
-   last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
 
-   def full_name(self):
-       return self.first_name + " " + self.last_name
+    def full_name(self):
+        return self.first_name + " " + self.last_name
 
-   def __str__(self):
-         return self.full_name()
+    def __str__(self):
+        return self.full_name()
 
 
 class Book(models.Model):
@@ -42,4 +49,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-
