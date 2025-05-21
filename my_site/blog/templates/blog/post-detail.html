@@ -13,6 +13,9 @@
 
     <section id="summary">
         <h2>{{ post.title }}</h2>
+        {% for tag in post.tags.all %}
+            <div>{{ tag.caption }}</div>
+        {% endfor %}
         <article>
             <img src="{% static 'blog/images/' %}{{ post.image_name }}" alt="{{ post.title }}">
             <address>
