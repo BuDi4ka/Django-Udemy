@@ -13,7 +13,7 @@ def index(request):
     avg_rating = books.aggregate(Avg('rating'))['rating__avg']
 
     return render(request,
-                  'dat_model/index.html',
+                  'book_outlet/index.html',
                   {
                       'books': books,
                       'total_books': total_books,
@@ -30,7 +30,7 @@ def detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
     return render(
         request,
-        'dat_model/book_detail.html',
+        'book_outlet/book_detail.html',
         {
             'title': book.title,
             'author': book.author,
