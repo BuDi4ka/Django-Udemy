@@ -4,6 +4,11 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=80)
+    code = models.CharField(max_length=3)
+
+
 class Address(models.Model):
     street = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=6)
@@ -39,6 +44,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name='books')
     is_bestselling = models.BooleanField(null=False, default=False)
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
+    country = models.ManyToManyField(Country)
 
     def save(self, *args, **kwargs):
         if not self.slug:
