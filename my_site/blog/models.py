@@ -28,7 +28,7 @@ class Post(models.Model):
     date = models.DateField(auto_now_add=True)
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
     tags = models.ManyToManyField('Tag')
-    author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True, related_name='posts')
+    author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, related_name='posts')
 
     def save(self, *args, **kwargs):
         if not self.slug:  # Generate slug only if empty
