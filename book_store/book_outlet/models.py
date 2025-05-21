@@ -17,7 +17,7 @@ class Book(models.Model):
             MaxValueValidator(5)
         ]
     )
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name='books')
     is_bestselling = models.BooleanField(null=False, default=False)
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
 
