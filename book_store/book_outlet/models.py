@@ -4,6 +4,11 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 
+class Author(models.Model):
+   first_name = models.CharField(max_length=100)
+   last_name = models.CharField(max_length=100)
+
+
 class Book(models.Model):
     title = models.CharField(max_length=50)
     rating = models.IntegerField(
@@ -12,7 +17,7 @@ class Book(models.Model):
             MaxValueValidator(5)
         ]
     )
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     is_bestselling = models.BooleanField(null=False, default=False)
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
 
@@ -31,3 +36,4 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
