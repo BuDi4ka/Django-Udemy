@@ -35,6 +35,9 @@ class Post(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -44,6 +47,9 @@ class Author(models.Model):
     def save(self, *args, **kwargs):
         self.email = self.email_address.lower()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class Tag(models.Model):
