@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <hr>
     <ul>
         {% for book in books %}
             <a href="{{ book.get_absolute_url }}">
@@ -12,4 +13,7 @@
             </a>
         {% endfor %}
     </ul>
+    <hr>
+    <p>Total Number of Books: {{ total_books }}</p>
+    <p>Avarage Rating of Books {{ average_rating }}</p>
 {% endblock %}
