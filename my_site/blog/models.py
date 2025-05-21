@@ -25,7 +25,7 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=100)
     content = models.TextField()
     image_name = models.CharField(max_length=255, validators=[validate_image_name])
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
     tags = models.ManyToManyField('Tag')
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True, related_name='posts')
@@ -54,3 +54,6 @@ class Author(models.Model):
 
 class Tag(models.Model):
     caption = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.caption
