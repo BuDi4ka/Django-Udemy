@@ -38,8 +38,6 @@ class Command(BaseCommand):
                 excerpt='This is a short excerpt of the blog post.',
                 content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' * 5,
                 image_name=f'image{i + 1}.jpg',
-                date=date.today() - timedelta(days=i),
-                slug=slugify(title),
                 author=random.choice(authors)
             )
             post.tags.set(random.sample(tags, k=random.randint(1, 3)))
