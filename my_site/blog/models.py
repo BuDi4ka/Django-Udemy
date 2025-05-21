@@ -42,7 +42,7 @@ class Author(models.Model):
     email_address = models.EmailField(validators=[validate_email])
 
     def save(self, *args, **kwargs):
-        self.email = self.email.lower()
+        self.email = self.email_address.lower()
         super().save(*args, **kwargs)
 
 
