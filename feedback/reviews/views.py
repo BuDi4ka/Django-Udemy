@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
+
 from .forms import ReviewForm
 from .models import Review
 
@@ -33,7 +34,16 @@ class ThankYouView(TemplateView):
         return context
 
 
-class ReviewListView(ListView):
-    model = Review
-    template_name = "reviews/all_reviews.html"
-    context_object_name = "reviews"
+class ReviewsListView(TemplateView):
+    template_name = 'reviews/all_reviews.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['reviews'] = Review.objects.all()
+        return context
+
+
+# class ReviewListView(ListView):
+#     model = Review
+#     template_name = "reviews/all_reviews.html"
+#     context_object_name = "reviews"
