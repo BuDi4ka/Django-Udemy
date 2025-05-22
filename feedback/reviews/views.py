@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView
+from django.views.generic.base import TemplateView
 from .forms import ReviewForm
 from .models import Review
 
@@ -18,14 +19,18 @@ class ReviewView(View):
 
         if form.is_valid():
             form.save()
-            return redirect("all-reviews")
+            return redirect("thank-you")
 
         return render(request, "reviews/review.html", {"form": form})
 
 
-class ThankYouView(View):
-    def get(self, request):
-        return render (request, "reviews/thank_you.html")
+class ThankYouView(TemplateView):
+    template_name = 'reviews/thank_you.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = "Thank you for your feedback!"
+        return context
 
 
 class ReviewListView(ListView):
