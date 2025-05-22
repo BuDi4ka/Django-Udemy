@@ -8,13 +8,9 @@
     <title>Your Review</title>
 </head>
 <body>
-    <form method="POST">
+    <form action="/" method="POST">
         {% csrf_token %}
-        {% if has_error %}
-            <p style="color: red">This form is invalid. Please try again.</p>
-        {% endif %}
-        <label for="username">Your name</label>
-        <input id='username' name='username' type='text'>
+        {{ form }}
         <button type="submit">Send</button>
     </form>
 </body>
