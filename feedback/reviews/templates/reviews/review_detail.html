@@ -1,0 +1,12 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
+    {{ review.review_text|truncatewords:10 }}
+{% endblock %}
+
+{% block content %}
+    <p>By {{ review.user_name }}</p>
+    <p>{{ review.review_text }}</p>
+    <p>{{ review.rating }}</p>
+    <a href="{% url 'all-reviews' %}">Back to all Reviews</a>
+{% endblock %}

@@ -9,7 +9,7 @@ All Reviews
     <ul>
         {% for review in reviews %}
             <li>
-                {{ review.user_name }} - {{ review.review_text }}<br>
+                <a href="{% url 'review-detail' pk=review.pk %}">{{ review.user_name }} - {{ review.review_text }}</a><br>
             </li>
         {% endfor %}
     </ul>
