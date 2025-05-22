@@ -10,6 +10,9 @@
 <body>
     <form method="POST">
         {% csrf_token %}
+        {% if has_error %}
+            <p style="color: red">This form is invalid. Please try again.</p>
+        {% endif %}
         <label for="username">Your name</label>
         <input id='username' name='username' type='text'>
         <button type="submit">Send</button>
