@@ -1,13 +1,8 @@
-{% extends 'reviews/base.html' %}
+{% extends "reviews/base.html" %}
 
-{% block title %}
-    Thank you
-{% endblock %}
+{% block title %}Thank you!{% endblock %}
 
 {% block content %}
-     <h1>Thank you</h1>
-    {{ message }}
-    <p>
-    <a href="{% url 'all-reviews' %}">Go to all reviews</a>
-    </p>
+  <h1>Thank you!</h1>
+  <p>{{ message }}</p>
 {% endblock %}
