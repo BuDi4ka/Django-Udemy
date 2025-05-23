@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.HomePageView.as_view(), name='index-page'),
     path('posts/', views.AllPostsView.as_view(), name='posts-page'),
     path('posts/<slug:slug>/', views.PostDetailView.as_view(), name='post-detail-page'),
+    path('posts/<slug:slug>/add-comment/', views.CommentCreateView.as_view(), name='add-comment'),
 ]

@@ -33,20 +33,20 @@
 
     <main>
         {{ post.content|linebreaks }}
+
+        <h2>Comments</h2>
         {% if post.comments.exists %}
             <ul>
                 {% for comment in post.comments.all %}
-                    <li>{{ comment.content }}</li>
-                    <li>{{ comment.date }}</li>
+                    <li>{{ comment.content }} -- {{ comment.date }}</li>
                 {% endfor %}
             </ul>
         {% else %}
             <p>No comments yet.</p>
         {% endif %}
-
+        <h2>Add Comment</h2>
         <section id="add-comment">
-            <h3>Add a Comment</h3>
-            <form method="post">
+            <form action="{% url 'add-comment' slug=post.slug %}" method="post">
                 {% csrf_token %}
                 {{ comment_form.as_p }}
                 <button type="submit">Submit</button>

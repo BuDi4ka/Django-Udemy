@@ -1,8 +1,11 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
 
 
@@ -33,3 +36,16 @@ class PostDetailView(DetailView):
         context['post_tags'] = self.get_object().tags.all()
         context['comment_form'] = CommentForm()
         return context
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        post = get_object_or_404(Post, slug=self.kwargs['slug'])
+        form.instance.post = post
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('post-detail-page', kwargs={'slug': self.kwargs['slug']})
