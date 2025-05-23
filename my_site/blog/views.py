@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import DetailView
 
 from .models import Post
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -30,4 +31,5 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post_tags'] = self.get_object().tags.all()
+        context['comment_form'] = CommentForm()
         return context
