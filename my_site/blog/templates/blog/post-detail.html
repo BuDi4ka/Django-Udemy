@@ -33,6 +33,25 @@
 
     <main>
         {{ post.content|linebreaks }}
+        {% if post.comments.exists %}
+            <ul>
+                {% for comment in post.comments.all %}
+                    <li>{{ comment.content }}</li>
+                    <li>{{ comment.date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No comments yet.</p>
+        {% endif %}
+
+        <section id="add-comment">
+            <h3>Add a Comment</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ post.comments.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </section>
     </main>
 
 {% endblock %}
