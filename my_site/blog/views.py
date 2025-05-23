@@ -1,23 +1,33 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView, ListView
+from django.views.generic.detail import DetailView
+
 from .models import Post
 
 
 # Create your views here.
-def index(request):
-    latest_posts = Post.objects.order_by('-date')[:3]
-    return render(request, 'blog/index.html', {'posts': latest_posts})
+class HomePageView(TemplateView):
+    template_name = 'blog/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.order_by('-date')[:3]
+        return context
 
 
-def posts(request):
-    all_posts = Post.objects.all().order_by('-date')
-    return render(request, 'blog/all-posts.html', {
-        'posts': all_posts,
-    })
+class AllPostsView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    ordering = '-date'
+    template_name = 'blog/all-posts.html'
 
 
-def post_detail(request, slug):
-    identified_post = get_object_or_404(Post, slug=slug)
-    return render(request, 'blog/post-detail.html', {
-        'post': identified_post,
-        'post_tags': identified_post.tags.all(),
-    })
+class PostDetailView(DetailView):
+    model = Post
+    context_object_name = 'post'
+    template_name = 'blog/post-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post_tags'] = self.get_object().tags.all()
+        return context

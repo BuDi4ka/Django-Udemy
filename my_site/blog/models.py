@@ -25,7 +25,6 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=100)
     content = models.TextField()
     image = models.ImageField(upload_to='images')
-    # image_name = models.CharField(max_length=255, validators=[validate_image_name])
     date = models.DateField()
     slug = models.SlugField(default='', null=False, unique=True, blank=True, db_index=True)
     tags = models.ManyToManyField('Tag')
