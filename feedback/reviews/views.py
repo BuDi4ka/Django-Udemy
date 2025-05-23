@@ -1,6 +1,5 @@
-from reviews.models import Review
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
@@ -47,6 +46,6 @@ class SingleReviewView(DetailView):
 class AddFavoriteView(View):
     def post(self, request):
         review_id = request.POST.get("review_id")
-        fav_review = Review.objects.get(pk=review_id)
-        request.session["favorite_review"] = fav_review
-        return HttpResponseRedirect("reviews/" + review_id)
+        request.session["favorite_review"] = review_id
+        print('favorite_review works', review_id)
+        return redirect(reverse("single-review", args=[review_id]))
