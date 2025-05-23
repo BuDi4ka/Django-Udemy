@@ -126,4 +126,8 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/media/"
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 1 week
+
